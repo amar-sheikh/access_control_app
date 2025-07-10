@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     patch 'update', to: 'dashboard#update'
 
     resources :user_roles
+    resources :users
   end
 
   root to: "organization/dashboard#index"
