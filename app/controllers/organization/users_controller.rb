@@ -14,7 +14,7 @@ class Organization::UsersController < Organization::BaseController
   def edit; end
 
   def create
-    @user = @organization.org_users.new(user_params)
+    @user = @organization.org_users.invite!(user_params, current_org_user)
 
     if @user.errors.empty?
       redirect_to organization_users_path, notice: "User was invited successfully."

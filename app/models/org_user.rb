@@ -2,7 +2,7 @@ class OrgUser < ApplicationRecord
   attr_accessor :org_name
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
   belongs_to :organization

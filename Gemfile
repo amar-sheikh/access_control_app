@@ -37,6 +37,8 @@ gem "bootsnap", require: false
 # Add devise for user authentication
 gem 'devise'
 
+# For inviting user to organization.
+gem 'devise_invitable'
 
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem

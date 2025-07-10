@@ -17,6 +17,15 @@
 
       <dt class="col-sm-4">Role</dt>
       <dd class="col-sm-8"><%= @user.user_role.name %></dd>
+
+      <dt class="col-sm-4">Invitation Status</dt>
+      <dd class="col-sm-8">
+        <% if @user.invitation_accepted_at.present? %>
+        Accepted
+        <% elsif @user.invitation_sent_at.present? %>
+        Pending
+        <% end %>
+      </dd>
     </dl>
   </div>
 </div>

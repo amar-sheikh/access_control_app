@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   devise_for :org_users, controllers: {
-    registrations: 'org_users/registrations'
+    registrations: 'org_users/registrations',
+    invitations:   'org_users/invitations'
   }
 
   namespace :organization do

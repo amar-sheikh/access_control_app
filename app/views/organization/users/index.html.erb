@@ -18,6 +18,7 @@
       <th>Email</th>
       <th>Role</th>
       <th>Invited by</th>
+      <th>Invitation Status</th>
       <th>Actions</th>
     </tr>
   </thead>
@@ -28,6 +29,13 @@
         <td><%= user.email %></td>
         <td><%= user.user_role.name %></td>
         <td><%= user.invited_by&.name %></td>
+        <td>
+          <% if user.invitation_accepted_at.present? %>
+            Accepted
+          <% elsif user.invitation_sent_at.present? %>
+            Pending
+          <% end %>
+        </td>
         <td>
           <%= link_to "Show", organization_user_path(user), class: "btn btn-sm btn-outline-secondary" %>
           <%= link_to "Edit", edit_organization_user_path(user), class: "btn btn-sm btn-outline-primary" %>
