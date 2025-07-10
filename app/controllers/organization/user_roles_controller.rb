@@ -19,7 +19,7 @@ class Organization::UserRolesController < Organization::BaseController
     @user_role = @organization.user_roles.new(user_role_params)
 
     if @user_role.save
-      redirect_to @user_role, notice: "Organization user role was successfully created."
+      redirect_to organization_user_role_path(@user_role), notice: "Organization user role was successfully created."
     else
       render :new, status: :unprocessable_entity
     end
@@ -27,7 +27,7 @@ class Organization::UserRolesController < Organization::BaseController
 
   def update
     if @user_role.update(user_role_params)
-      redirect_to @user_role, notice: "Organization user role was successfully updated."
+      redirect_to organization_user_role_path(@user_role), notice: "Organization user role was successfully updated."
     else
       render :edit, status: :unprocessable_entity
     end

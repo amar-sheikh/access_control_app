@@ -1,4 +1,7 @@
-<%= form_with(model: user_role, url: organization_user_role_path, method: :patch, class: "needs-validation") do |form| %>
+<%= form_with(model: user_role,
+  url: user_role.persisted? ? organization_user_role_path(user_role) : organization_user_roles_path,
+  method: user_role.persisted? ? :patch : :post,
+  class: "needs-validation") do |form| %>
   <% if user_role.errors.any? %>
     <div class="alert alert-danger">
       <h5><%= pluralize(user_role.errors.count, "error") %> prevented saving:</h5>
