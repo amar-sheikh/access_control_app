@@ -1,0 +1,36 @@
+<%= form_with(model: organization, url: organization_update_path, method: :patch, class: "needs-validation") do |form| %>
+  <% if organization.errors.any? %>
+    <div class="alert alert-danger">
+      <h4 class="alert-heading"><%= pluralize(organization.errors.count, "error") %> prevented this organization from being saved:</h4>
+      <ul class="mb-0">
+        <% organization.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Enter organization name" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :description, class: "form-label" %>
+    <%= form.text_area :description, class: "form-control", rows: 3, placeholder: "Brief description" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :phone, class: "form-label" %>
+    <%= form.text_field :phone, class: "form-control", placeholder: "Contact phone number" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :email_domain, class: "form-label" %>
+    <%= form.text_field :email_domain, class: "form-control", placeholder: "example.org" %>
+  </div>
+
+  <div class="text-end mt-4">
+    <%= form.submit "Update Organization", class: "btn btn-primary" %>
+  </div>
+<% end %>

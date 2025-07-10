@@ -1,0 +1,19 @@
+<%= form_with(model: user_role, url: organization_user_role_path, method: :patch, class: "needs-validation") do |form| %>
+  <% if user_role.errors.any? %>
+    <div class="alert alert-danger">
+      <h5><%= pluralize(user_role.errors.count, "error") %> prevented saving:</h5>
+      <ul>
+        <% user_role.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Role name (e.g., Admin)" %>
+  </div>
+
+  <%= form.submit "Save Changes", class: "btn btn-primary" %>
+<% end %>
