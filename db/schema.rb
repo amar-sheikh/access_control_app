@@ -10,9 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_11_094547) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_11_110720) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contents", force: :cascade do |t|
+    t.string "title"
+    t.text "text"
+    t.bigint "created_by_id", null: false
+    t.boolean "require_parent_concent"
+    t.integer "age_group"
+    t.bigint "organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_contents_on_created_by_id"
+    t.index ["organization_id"], name: "index_contents_on_organization_id"
+  end
 
   create_table "org_users", force: :cascade do |t|
     t.string "name"
@@ -81,6 +94,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_11_094547) do
     t.index ["organization_id"], name: "index_user_roles_on_organization_id"
   end
 
+  add_foreign_key "contents", "org_users", column: "created_by_id"
+  add_foreign_key "contents", "organizations"
   add_foreign_key "org_users", "organizations"
   add_foreign_key "org_users", "user_roles"
   add_foreign_key "role_permissions", "permissions"

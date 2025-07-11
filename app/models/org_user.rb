@@ -8,6 +8,8 @@ class OrgUser < ApplicationRecord
   belongs_to :organization
   belongs_to :user_role
 
+  has_many :contents, foreign_key: :created_by_id
+
   validates :organization_id, presence: true
   validates :user_role_id, presence: true
   validates :date_of_birth, presence: true, if: :require_date_of_birth?
