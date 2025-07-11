@@ -23,11 +23,6 @@
     <%= form.text_area :text, class: "form-control", rows: 5 %>
   </div>
 
-  <div class="form-check mb-3">
-    <%= form.check_box :require_parent_concent, class: "form-check-input" %>
-    <%= form.label :require_parent_concent, class: "form-check-label" %>
-  </div>
-
   <div class="mb-3">
     <%= form.label :age_group, class: "form-label" %>
     <%= form.select :age_group, age_group_options, {}, class: "form-select" %>

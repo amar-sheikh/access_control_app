@@ -4,7 +4,6 @@ class CreateContents < ActiveRecord::Migration[7.2]
       t.string :title
       t.text :text
       t.references :created_by, null: false, foreign_key: { to_table: :org_users }
-      t.boolean :require_parent_concent
       t.integer :age_group
       t.references :organization, null: false, foreign_key: true
 

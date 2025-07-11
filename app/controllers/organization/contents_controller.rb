@@ -49,6 +49,6 @@ class Organization::ContentsController < Organization::BaseController
     end
 
     def content_params
-      params.require(:content).permit(:title, :text, :require_parent_concent, :age_group, :organization_id)
+      params.require(:content).permit(:title, :text, :age_group, :organization_id)
     end
 end

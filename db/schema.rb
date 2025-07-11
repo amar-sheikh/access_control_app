@@ -18,7 +18,6 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_11_110720) do
     t.string "title"
     t.text "text"
     t.bigint "created_by_id", null: false
-    t.boolean "require_parent_concent"
     t.integer "age_group"
     t.bigint "organization_id", null: false
     t.datetime "created_at", null: false
