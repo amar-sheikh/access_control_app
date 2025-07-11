@@ -5,7 +5,7 @@ A Ruby on Rails application for managing age-restricted content access within or
 
 ## How application works
 
-
+https://github.com/user-attachments/assets/9a2563c5-2c07-47d2-9a42-c1c81d037cf1
 
 ## Features
 
