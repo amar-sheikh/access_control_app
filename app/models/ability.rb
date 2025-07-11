@@ -5,9 +5,13 @@ class Ability
     user ||= User.new
     role = user.user_role
 
+    can :read, Content
+
     if role.present?
       role.permissions.each do |perm|
-        subject = perm.subject == 'all' ? :all : perm.subject.safe_constantize
+        subject = perm.subject.safe_constantize
+        next unless subject
+
         can perm.action.to_sym, subject
       end
     end

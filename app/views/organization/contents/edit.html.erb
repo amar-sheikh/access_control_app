@@ -1,0 +1,15 @@
+<% content_for :title, "Edit Content" %>
+
+<div class="card shadow-sm mb-4">
+  <div class="card-header bg-primary text-white">
+    <h3 class="mb-0">Edit Content</h3>
+  </div>
+
+  <div class="card-body">
+    <%= render "form", content: @content %>
+  </div>
+</div>
+
+<div class="d-flex justify-content-between mt-3">
+  <%= link_to "Back", organization_contents_path, class: "btn btn-secondary" %>
+</div>

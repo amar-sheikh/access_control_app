@@ -1,0 +1,43 @@
+<%= form_with(model: content,
+  url: content.persisted? ? organization_content_path(content) : organization_contents_path,
+  method: content.persisted? ? :patch : :post,
+  class: "needs-validation") do |form| %>
+  <% if content.errors.any? %>
+    <div class="alert alert-danger">
+      <h4><%= pluralize(content.errors.count, "error") %> prohibited this content from being saved:</h4>
+      <ul>
+        <% content.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :title, class: "form-label" %>
+    <%= form.text_field :title, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :text, class: "form-label" %>
+    <%= form.text_area :text, class: "form-control", rows: 5 %>
+  </div>
+
+  <div class="form-check mb-3">
+    <%= form.check_box :require_parent_concent, class: "form-check-input" %>
+    <%= form.label :require_parent_concent, class: "form-check-label" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :age_group, class: "form-label" %>
+    <%= form.select :age_group, age_group_options, {}, class: "form-select" %>
+    <div class="form-text text-muted">
+      Only users whose age meets or exceeds the selected age group will be able to access this content.
+    </div>
+  </div>
+
+
+  <div class="mt-4">
+    <%= form.submit class: "btn btn-primary" %>
+  </div>
+<% end %>

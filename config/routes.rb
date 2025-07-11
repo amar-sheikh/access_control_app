@@ -11,6 +11,7 @@ Rails.application.routes.draw do
 
     resources :user_roles
     resources :users
+    resources :contents
   end
 
   root to: "organization/dashboard#index"

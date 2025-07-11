@@ -1,0 +1,16 @@
+<% if @content.accessible_by?(current_org_user) %>
+  <div class="card mb-4">
+    <div class="card-body">
+      <%= render @content %>
+    </div>
+  </div>
+<% else %>
+  <div class="alert alert-warning mt-4" role="alert">
+    <h5 class="alert-heading">Access Restricted</h5>
+    <p>This content is age restricted.</p>
+    <hr>
+    <p class="mb-1">
+      If you're underage, you can request access from your parent or guardian.
+    </p>
+  </div>
+<% end %>

@@ -1,6 +1,6 @@
 permissions:
   read_org:
-    label: "Read Organizations"
+    label: "View Organizations"
     can: [read, Organization]
 
   manage_orgs:
@@ -8,7 +8,7 @@ permissions:
     can: [manage, Organization]
 
   read_user_role:
-    label: "Read User Roles"
+    label: "View User Roles"
     can: [read, UserRole]
 
   manage_user_roles:
@@ -16,9 +16,13 @@ permissions:
     can: [manage, UserRole]
 
   read_user:
-    label: "Read Users"
+    label: "View Users"
     can: [read, OrgUser]
 
   manage_users:
     label: "Manage Users"
     can: [manage, OrgUser]
+
+  manage_contents:
+    label: "Manage Contents"
+    can: [manage, Content]
