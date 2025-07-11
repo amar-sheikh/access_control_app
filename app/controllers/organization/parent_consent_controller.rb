@@ -14,11 +14,11 @@ class Organization::ParentConsentController < Organization::BaseController
     )
 
     if @parent.nil?
-      redirect_to new_organization_parent_consent_path, alert: "Parent must be a member of your organization." and return
+      redirect_to new_organization_parent_consent_path(content_id: @content.id), alert: "Parent must be a member of your organization." and return
     end
 
     if @user == @parent
-      redirect_to new_organization_parent_consent_path, alert: "You can't use your own email to get parent access." and return
+      redirect_to new_organization_parent_consent_path(content_id: @content.id), alert: "You can't use your own email to get parent access." and return
     end
 
     @user.update!(

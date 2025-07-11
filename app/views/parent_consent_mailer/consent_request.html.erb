@@ -1,10 +1,7 @@
 <h2>Hello <%= @parent.name %>,</h2>
 
-<p>Your child <strong><%= @user.name %></strong> is trying to access content titled:</p>
-
 <p>
-  <strong><%= @content.title %></strong><br>
-  in the organization <strong><%= @organization.name %></strong>.
+  Your child <strong><%= @user.name %></strong> is trying to access content titled: <strong><%= @content.title %></strong> in the organization <strong><%= @organization.name %></strong>.
 </p>
 
 <p>This content has age restrictions. To allow access, please click the button below:</p>

@@ -4,8 +4,10 @@
 
     <div class="mb-3">
       <h6 class="text-muted">Content Body</h6>
-      <div class="border rounded p-3 bg-light" style='max-height: 500px; overflow-y: scroll'>
-        <%= content.text.html_safe %>
+      <div class="content-wrapper border rounded p-3 bg-light" style="max-height: 500px; overflow-y: scroll;">
+        <div class="content-body">
+          <%= content.text.html_safe %>
+        </div>
       </div>
     </div>
 

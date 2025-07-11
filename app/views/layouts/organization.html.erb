@@ -17,9 +17,12 @@
   <body class="org-layout">
     <header class="bg-primary text-white p-3">
       <div class="container">
-        <div class="d-flex justify-content-between">
+        <div class="d-flex justify-content-between align-items-center">
           <h1>Dashboard</h1>
-          <div>
+          <div class="d-flex align-items-center">
+            <span class="me-3">
+              Logged in as <strong><%= current_org_user.name %></strong>
+            </span>
             <% if can? :manage, Organization %>
               <%= link_to "Edit Org", organization_edit_path, class: "btn btn-outline-light m-1" %>
             <% end %>

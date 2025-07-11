@@ -8,7 +8,7 @@ class ParentConsentMailer < ApplicationMailer
     @organization = @user.organization
     @token = @user.consent_token
 
-    @approval_link = verify_consent_url(token: @token)
+    @approval_link = organization_verify_consent_url(token: @token)
 
     mail(
       to: @parent.email,
