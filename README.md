@@ -79,3 +79,4 @@ The application uses **Devise** for authentication and implements role-based acc
 - Once the 24-hour period ends, the **consent automatically expires**.
 - The user must **request consent again** to access restricted content after expiration.
 
+Note: **There is no age restriction for content creator and content manager**
