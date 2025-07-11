@@ -1,0 +1,56 @@
+<h2 class="mb-4 text-center">Log In</h2>
+
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <%= form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: "card p-4 shadow-sm" }) do |f| %>
+      <% if flash[:alert] %>
+        <div class="alert alert-danger">
+          <%= flash[:alert] %>
+        </div>
+      <% end %>
+      <% if flash[:notice] %>
+        <div class="alert alert-info">
+          <%= flash[:notice] %>
+        </div>
+      <% end %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="mb-3">
+        <%= f.label :email, class: "form-label" %>
+        <%= f.email_field :email,
+              autofocus: true,
+              autocomplete: "email",
+              class: "form-control #{'is-invalid' if resource.errors[:email].present?}" %>
+        <% if resource.errors[:email].present? %>
+          <div class="invalid-feedback"><%= resource.errors[:email].first %></div>
+        <% end %>
+      </div>
+
+      <div class="mb-3">
+        <%= f.label :password, class: "form-label" %>
+        <%= f.password_field :password,
+              autocomplete: "current-password",
+              class: "form-control #{'is-invalid' if resource.errors[:password].present?}" %>
+        <% if resource.errors[:password].present? %>
+          <div class="invalid-feedback"><%= resource.errors[:password].first %></div>
+        <% end %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="form-check mb-3">
+          <%= f.check_box :remember_me, class: "form-check-input", id: "remember_me" %>
+          <%= f.label :remember_me, class: "form-check-label", for: "remember_me" %>
+        </div>
+      <% end %>
+
+      <div class="d-grid mb-3">
+        <%= f.submit "Log In", class: "btn btn-primary" %>
+      </div>
+
+    <% end %>
+
+    <div class="text-center mt-3">
+      <%= render "devise/shared/links" %>
+    </div>
+  </div>
+</div>

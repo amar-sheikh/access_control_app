@@ -1,0 +1,40 @@
+<% content_for :title, "#{@user.name}" %>
+
+<div class="card shadow-sm mb-4">
+  <div class="card-header bg-primary text-white">
+    <h5 class="mb-0">User Details</h5>
+  </div>
+  <div class="card-body">
+    <dl class="row mb-0">
+      <dt class="col-sm-4">Name</dt>
+      <dd class="col-sm-8"><%= @user.name %></dd>
+
+      <dt class="col-sm-4">Email</dt>
+      <dd class="col-sm-8"><%= @user.email %></dd>
+
+      <dt class="col-sm-4">Phone</dt>
+      <dd class="col-sm-8"><%= @user.phone %></dd>
+
+      <dt class="col-sm-4">Role</dt>
+      <dd class="col-sm-8"><%= @user.user_role.name %></dd>
+
+      <dt class="col-sm-4">Invitation Status</dt>
+      <dd class="col-sm-8">
+        <% if @user.invitation_accepted_at.present? %>
+        Accepted
+        <% elsif @user.invitation_sent_at.present? %>
+        Pending
+        <% end %>
+      </dd>
+    </dl>
+  </div>
+</div>
+
+<div class="d-flex gap-2">
+  <% if can? :manage, OrgUser %>
+    <%= link_to "Edit", edit_organization_user_path(@user), class: "btn btn-outline-primary" %>
+    <%= button_to "Delete", organization_user_path(@user), method: :delete,
+                data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+  <% end %>
+  <%= link_to "Back", organization_users_path, class: "btn btn-secondary ms-auto" %>
+</div>

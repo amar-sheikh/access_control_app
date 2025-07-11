@@ -1,0 +1,34 @@
+<%= form_with(model: user_role,
+  url: user_role.persisted? ? organization_user_role_path(user_role) : organization_user_roles_path,
+  method: user_role.persisted? ? :patch : :post,
+  class: "needs-validation") do |form| %>
+  <% if user_role.errors.any? %>
+    <div class="alert alert-danger">
+      <h5><%= pluralize(user_role.errors.count, "error") %> prevented saving:</h5>
+      <ul>
+        <% user_role.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :name, class: "form-label" %>
+    <%= form.text_field :name, class: "form-control", placeholder: "Role name (e.g., Admin)" %>
+  </div>
+
+  <div class="mb-3">
+    <h4>Permissions</h4>
+    <div class="mt-2 row">
+      <% Permission.all.each do |permission| %>
+      <div class="col-4">
+        <%= check_box_tag "user_role[permission_ids][]", permission.id, @user_role.permission_ids.include?(permission.id), id: "permission_#{permission.id}", class: "form-check-input permission-checkbox" %>
+        <%= label_tag "permission_#{permission.id}", permission.label, class: "form-check-label" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
+  <%= form.submit "Save Changes", class: "btn btn-primary" %>
+<% end %>

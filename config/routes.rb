@@ -1,5 +1,21 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :org_users, controllers: {
+    registrations: 'org_users/registrations',
+    invitations:   'org_users/invitations'
+  }
+
+  namespace :organization do
+    get '/', to: 'dashboard#index', as: :root
+    get 'edit', to: 'dashboard#edit'
+    patch 'update', to: 'dashboard#update'
+
+    resources :user_roles
+    resources :users
+  end
+
+  root to: "organization/dashboard#index"
+  resources :un_authorized, only: [:index]
+
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.

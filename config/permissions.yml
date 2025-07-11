@@ -1,0 +1,24 @@
+permissions:
+  read_org:
+    label: "Read Organizations"
+    can: [read, Organization]
+
+  manage_orgs:
+    label: "Manage Organizations"
+    can: [manage, Organization]
+
+  read_user_role:
+    label: "Read User Roles"
+    can: [read, UserRole]
+
+  manage_user_roles:
+    label: "Manage User Roles"
+    can: [manage, UserRole]
+
+  read_user:
+    label: "Read Users"
+    can: [read, OrgUser]
+
+  manage_users:
+    label: "Manage Users"
+    can: [manage, OrgUser]

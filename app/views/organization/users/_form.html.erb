@@ -1,0 +1,33 @@
+<%= form_with(
+  model: user,
+  url: user.persisted? ? organization_user_path(user) : organization_users_path,
+  method: user.persisted? ? :patch : :post,
+  class: "needs-validation") do |form| %>
+  <% if user.errors.any? %>
+    <div class="alert alert-danger">
+      <h5><%= pluralize(user.errors.count, "error") %> prevented saving:</h5>
+      <ul>
+        <% user.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :email, class: "form-label" %>
+    <%= form.email_field :email, class: "form-control", placeholder: "Email" %>
+  </div>
+
+  <div class="mb-3">
+    <%= form.label :user_role_id, "User Role", class: "form-label" %>
+    <%= form.collection_select :user_role_id,
+                               @organization.user_roles,
+                               :id,
+                               :name,
+                               { prompt: "Select a role" },
+                               class: "form-select" %>
+  </div>
+
+  <%= form.submit "Save Changes", class: "btn btn-primary" %>
+<% end %>
