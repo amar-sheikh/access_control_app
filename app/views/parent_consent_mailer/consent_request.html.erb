@@ -1,0 +1,23 @@
+<h2>Hello <%= @parent.name %>,</h2>
+
+<p>Your child <strong><%= @user.name %></strong> is trying to access content titled:</p>
+
+<p>
+  <strong><%= @content.title %></strong><br>
+  in the organization <strong><%= @organization.name %></strong>.
+</p>
+
+<p>This content has age restrictions. To allow access, please click the button below:</p>
+
+<p style="margin: 20px 0;">
+  <a href="<%= @approval_link %>" style="background-color: #28a745; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px;">
+    Allow Access
+  </a>
+</p>
+
+<p>If you did not expect this email, you can ignore it.</p>
+
+<p>This link will expire in 5 minutes for security.</p>
+
+<hr>
+<p>Sent by <strong><%= @organization.name %></strong></p>

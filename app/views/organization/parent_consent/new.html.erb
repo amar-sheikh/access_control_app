@@ -1,0 +1,24 @@
+<div class="container mt-4">
+  <div class="alert alert-primary p-4 border rounded">
+    <h4 class="mb-3">Parental Consent</h4>
+    <p>Ask your parent if he have access to this content or not?</p>
+
+    <%= form_with url: organization_parent_consent_index_path, method: :post, local: true do |form| %>
+      <div class="mb-3">
+        <%= form.hidden_field :content_id, value: @content.id %>
+        <%= form.hidden_field :consent_token, value: SecureRandom.hex(8) %>
+
+        <% if flash[:alert] %>
+          <div class="alert alert-danger">
+            <%= flash[:alert] %>
+          </div>
+        <% end %>
+
+        <%= form.label :parent_email, "Parent's Email", class: "form-label" %>
+        <%= form.email_field :parent_email, class: "form-control", required: true, value: current_org_user.parent_email %>
+      </div>
+
+      <%= form.submit "Send Consent Request", class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>

@@ -33,4 +33,20 @@ class OrgUser < ApplicationRecord
   def invitation_accepted?
     invitation_accepted_at.present?
   end
+
+  def consent_token_expired?
+    consent_token_sent_at.nil? || consent_token_sent_at < 5.minutes.ago
+  end
+
+  def consent_expiration_time
+    consent_accepted_at + 24.hours
+  end
+
+  def consent_remaining_time
+    consent_expiration_time - Time.zone.now
+  end
+
+  def have_parent_consent?
+    consent_accepted_at.present? && consent_remaining_time.positive?
+  end
 end

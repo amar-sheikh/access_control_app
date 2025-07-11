@@ -13,6 +13,15 @@ class Content < ApplicationRecord
   end
 
   def accessible_by?(user)
-    user.age >= required_age
+    return true if required_age.nil?
+    return true if user.age >= required_age
+    return true if user.have_parent_consent?
+
+    parent = OrgUser.find_by(email: user.parent_email)
+
+    return false if parent == user
+    return accessible_by?(parent) if parent.present?
+
+    false
   end
 end
