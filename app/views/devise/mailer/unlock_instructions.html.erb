@@ -1,0 +1,37 @@
+<div style="font-family: Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 2rem; background-color: #f8f9fa; border-radius: 8px; color: #212529;">
+
+  <h2 style="margin-top: 0;">Hello <%= @resource.email %></h2>
+
+  <p style="font-size: 16px; line-height: 1.6;">
+    Your account has been <strong>locked</strong> due to too many unsuccessful sign-in attempts.
+  </p>
+
+  <p style="font-size: 16px; line-height: 1.6;">
+    To unlock your account and regain access, please click the button below:
+  </p>
+
+  <p style="text-align: center; margin: 30px 0;">
+    <a href="<%= unlock_url(@resource, unlock_token: @token) %>"
+       style="display: inline-block; padding: 12px 24px; background-color: #dc3545; color: #fff; text-decoration: none; border-radius: 6px; font-size: 16px;">
+      Unlock My Account
+    </a>
+  </p>
+
+  <p style="font-size: 14px; color: #6c757d; line-height: 1.6;">
+    If the button above doesn't work, copy and paste the following link into your browser:
+  </p>
+
+  <p style="font-size: 14px; background-color: #e9ecef; padding: 10px; border-radius: 4px; word-break: break-all; color: #343a40;">
+    <%= unlock_url(@resource, unlock_token: @token) %>
+  </p>
+
+  <p style="font-size: 14px; color: #6c757d; margin-top: 2rem;">
+    If you did not attempt to sign in, you can safely ignore this message.
+  </p>
+
+  <p style="margin-top: 3rem; font-size: 14px;">
+    Thanks,<br>
+    <strong>The Access Control App Team</strong>
+  </p>
+
+</div>

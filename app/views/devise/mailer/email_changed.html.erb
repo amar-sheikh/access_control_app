@@ -1,0 +1,23 @@
+<div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto; padding: 2rem; background-color: #f8f9fa; border-radius: 8px; color: #212529;">
+  <h2 style="margin-bottom: 1rem;">Hello <%= @email %></h2>
+
+  <% if @resource.try(:unconfirmed_email?) %>
+    <p style="font-size: 16px; line-height: 1.6;">
+      We're contacting you to let you know that your email is in the process of being changed to:
+    </p>
+    <p style="font-size: 18px; font-weight: bold; color: #0d6efd;">
+      <%= @resource.unconfirmed_email %>
+    </p>
+  <% else %>
+    <p style="font-size: 16px; line-height: 1.6;">
+      We're contacting you to confirm that your email has been successfully changed to:
+    </p>
+    <p style="font-size: 18px; font-weight: bold; color: #198754;">
+      <%= @resource.email %>
+    </p>
+  <% end %>
+
+  <p style="font-size: 14px; color: #6c757d; margin-top: 2rem;">
+    If you did not make this change, please contact our support team immediately.
+  </p>
+</div>

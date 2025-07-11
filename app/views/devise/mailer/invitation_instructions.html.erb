@@ -1,28 +1,37 @@
-<p>Hello <%= @resource.name.presence || "there" %>,</p>
+<div style="font-family: Arial, sans-serif; max-width: 640px; margin: 0 auto; padding: 2rem; background-color: #f8f9fa; border-radius: 8px; color: #212529;">
 
-<p>
-  You have been invited to join <strong><%= @resource.organization.name %></strong> on the Access Control App.
-</p>
+  <h2 style="margin-top: 0;">Welcome,</h2>
 
-<p>
-  To accept this invitation, please click the button below and set your password:
-</p>
+  <p style="font-size: 16px; line-height: 1.6;">
+    You've been invited to join <strong><%= @resource.organization.name %></strong> on the <strong>Access Control App</strong>.
+  </p>
 
-<p style="margin: 24px 0;">
-  <a href="<%= accept_invitation_url(@resource, invitation_token: @token) %>"
-     style="padding: 10px 20px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 4px;">
-    Accept Invitation
-  </a>
-</p>
+  <p style="font-size: 16px; line-height: 1.6;">
+    To accept this invitation and set your password, click the button below:
+  </p>
 
-<p>
-  If the button above doesn't work, copy and paste the following URL into your browser:
-  <br>
-  <%= accept_invitation_url(@resource, invitation_token: @token) %>
-</p>
+  <p style="margin: 30px 0; text-align: center;">
+    <a href="<%= accept_invitation_url(@resource, invitation_token: @token) %>"
+       style="display: inline-block; padding: 12px 24px; background-color: #007bff; color: #fff; text-decoration: none; border-radius: 6px; font-size: 16px;">
+      Accept Invitation
+    </a>
+  </p>
 
-<p>
-  If you weren’t expecting this invitation, you can safely ignore this email.
-</p>
+  <p style="font-size: 14px; line-height: 1.6; color: #6c757d;">
+    If the button above doesn’t work, you can copy and paste the following link into your browser:
+  </p>
 
-<p>Thanks,<br>The Access Control App Team</p>
+  <p style="font-size: 14px; word-break: break-all; background-color: #e9ecef; padding: 10px; border-radius: 4px; color: #343a40;">
+    <%= accept_invitation_url(@resource, invitation_token: @token) %>
+  </p>
+
+  <p style="font-size: 14px; color: #6c757d; margin-top: 2rem;">
+    If you weren’t expecting this invitation, you can safely ignore this email.
+  </p>
+
+  <p style="margin-top: 3rem; font-size: 14px;">
+    Thanks,<br>
+    <strong>The Access Control App Team</strong>
+  </p>
+
+</div>

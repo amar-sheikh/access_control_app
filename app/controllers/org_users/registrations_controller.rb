@@ -25,9 +25,18 @@ class OrgUsers::RegistrationsController < Devise::RegistrationsController
         set_minimum_password_length
         respond_with resource
       end
+
+    rescue ActiveRecord::RecordNotUnique => e
+      self.resource = build_resource(sign_up_params)
+      resource.errors.add(:org_name, "has already been taken")
+      set_minimum_password_length
+      flash.now[:alert] = "Signup failed: Organization name already exists."
+      render :new, status: :unprocessable_entity
     rescue ActiveRecord::RecordInvalid => e
-      flash[:alert] = "Signup failed: #{e.message}"
-      redirect_to new_org_user_registration_path
+      self.resource = resource
+      set_minimum_password_length
+      flash.now[:alert] = "Signup failed: #{e.message}"
+      render :new, status: :unprocessable_entity
     end
   end
 
