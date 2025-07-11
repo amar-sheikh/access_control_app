@@ -10,9 +10,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_07_11_052440) do
+ActiveRecord::Schema[7.2].define(version: 2025_07_11_125312) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "contents", force: :cascade do |t|
+    t.string "title"
+    t.text "text"
+    t.bigint "created_by_id", null: false
+    t.integer "age_group"
+    t.bigint "organization_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["created_by_id"], name: "index_contents_on_created_by_id"
+    t.index ["organization_id"], name: "index_contents_on_organization_id"
+  end
 
   create_table "org_users", force: :cascade do |t|
     t.string "name"
@@ -34,6 +46,12 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_11_052440) do
     t.string "invited_by_type"
     t.bigint "invited_by_id"
     t.integer "invitations_count", default: 0
+    t.date "date_of_birth"
+    t.boolean "parent_consent", default: false
+    t.string "parent_email"
+    t.string "consent_token"
+    t.datetime "consent_token_sent_at"
+    t.datetime "consent_accepted_at"
     t.index ["email"], name: "index_org_users_on_email", unique: true
     t.index ["invitation_token"], name: "index_org_users_on_invitation_token", unique: true
     t.index ["invited_by_id"], name: "index_org_users_on_invited_by_id"
@@ -80,6 +98,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_07_11_052440) do
     t.index ["organization_id"], name: "index_user_roles_on_organization_id"
   end
 
+  add_foreign_key "contents", "org_users", column: "created_by_id"
+  add_foreign_key "contents", "organizations"
   add_foreign_key "org_users", "organizations"
   add_foreign_key "org_users", "user_roles"
   add_foreign_key "role_permissions", "permissions"

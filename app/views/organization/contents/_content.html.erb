@@ -1,0 +1,37 @@
+<div class="card">
+  <div class="card-body">
+    <h3 class="card-title mb-3"><%= content.title %></h3>
+
+    <div class="mb-3">
+      <h6 class="text-muted">Content Body</h6>
+      <div class="border rounded p-3 bg-light" style='max-height: 500px; overflow-y: scroll'>
+        <%= content.text.html_safe %>
+      </div>
+    </div>
+
+    <ul class="list-group list-group-flush mb-3">
+      <li class="list-group-item">
+        <strong>Created by:</strong>
+        <%= content.created_by.name %>
+      </li>
+      <li class="list-group-item">
+        <strong>Required age verification:</strong>
+        <% if content.age_group != 'every_one' %>
+         Yes (Minimun age should be <%= content.required_age %> years)
+       <% else %>
+         No
+       <% end %>
+      </li>
+      <li class="list-group-item">
+        <strong>Age group:</strong>
+        <%= content.age_group.titleize %>
+      </li>
+      <li class="list-group-item">
+        <strong>Organization:</strong>
+        <%= content.organization.name %>
+      </li>
+    </ul>
+
+    <%= link_to "Back", organization_contents_path, class: "btn btn-secondary mt-3" %>
+  </div>
+</div>

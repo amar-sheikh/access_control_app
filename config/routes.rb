@@ -11,6 +11,9 @@ Rails.application.routes.draw do
 
     resources :user_roles
     resources :users
+    resources :contents
+    resources :parent_consent, only: [:new, :create, :verify]
+    get "verify_consent", to: "parent_consent#verify", as: :verify_consent
   end
 
   root to: "organization/dashboard#index"

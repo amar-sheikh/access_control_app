@@ -14,7 +14,7 @@ class OrgUsers::InvitationsController < Devise::InvitationsController
   private
 
   def invite_params
-    params.require(:org_user).permit(:name, :phone, :email, :password, :password_confirmation, :invitation_token)
+    params.require(:org_user).permit(:name, :phone, :email, :date_of_birth, :password, :password_confirmation, :invitation_token)
   end
 
   def after_accept_path_for(resource)

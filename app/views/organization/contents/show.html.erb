@@ -1,0 +1,23 @@
+<% if can_access_content?(@content, current_org_user) %>
+  <% if current_org_user.have_parent_consent? %>
+    <p class="text-success mt-2">
+      Remaining Time: <%= distance_of_time_in_words(Time.zone.now, current_org_user.consent_expiration_time, include_seconds: true) %>
+    </p>
+  <% end %>
+  <div class="card mb-4">
+    <div class="card-body">
+      <%= render @content %>
+    </div>
+  </div>
+<% else %>
+  <div class="alert alert-warning mt-4" role="alert">
+    <h5 class="alert-heading">Access Restricted</h5>
+    <p>This content is age restricted.</p>
+    <hr>
+    <p class="mb-1">
+      If you're underage, you can request access from your parent or guardian.
+    </p>
+
+    <%= link_to "Request Parental Consent", new_organization_parent_consent_path(content_id: @content.id), class: "btn btn-outline-primary mt-3" %>
+  </div>
+<% end %>
