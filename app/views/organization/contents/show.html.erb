@@ -1,4 +1,4 @@
-<% if @content.accessible_by?(current_org_user) %>
+<% if can_access_content?(@content, current_org_user) %>
   <% if current_org_user.have_parent_consent? %>
     <p class="text-success mt-2">
       Remaining Time: <%= distance_of_time_in_words(Time.zone.now, current_org_user.consent_expiration_time, include_seconds: true) %>

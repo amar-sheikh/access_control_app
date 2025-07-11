@@ -6,4 +6,8 @@ module ContentsHelper
       "Adult (18+)" => "adult"
     }
   end
+
+  def can_access_content?(content, user)
+    content.accessible_by?(user) || can?(:manage, Content)
+  end
 end

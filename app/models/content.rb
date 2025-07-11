@@ -13,6 +13,7 @@ class Content < ApplicationRecord
   end
 
   def accessible_by?(user)
+    return true if created_by == user
     return true if required_age.nil?
     return true if user.age >= required_age
     return true if user.have_parent_consent?
