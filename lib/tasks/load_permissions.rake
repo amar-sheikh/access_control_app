@@ -11,7 +11,7 @@ namespace :permissions do
       end
     end
 
-    admin_roles = UserRole.where(name: "admin")
+    admin_roles = UserRole.where(name: "Admin")
     admin_roles.each do |role|
       role.permission_ids = permissions.map(&:id)
     end

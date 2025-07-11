@@ -7,7 +7,7 @@ class OrgUsers::RegistrationsController < Devise::RegistrationsController
         org_name = sign_up_params.delete(:org_name)
 
         @organization = Organization.create!(name: org_name)
-        @user_role = UserRole.create!(name: "admin", organization: @organization)
+        @user_role = UserRole.create!(name: "Admin", organization: @organization)
 
         build_resource(sign_up_params)
         resource.organization = @organization
