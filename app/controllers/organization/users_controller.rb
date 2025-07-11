@@ -1,4 +1,6 @@
 class Organization::UsersController < Organization::BaseController
+  load_and_authorize_resource class: 'OrgUser', instance_name: 'user'
+
   before_action :set_user, only: %i[ show edit update destroy ]
 
   def index

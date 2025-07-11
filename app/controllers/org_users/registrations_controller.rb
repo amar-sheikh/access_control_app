@@ -1,5 +1,3 @@
-# frozen_string_literal: true
-
 class OrgUsers::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: [:create, :update]
 
@@ -16,6 +14,7 @@ class OrgUsers::RegistrationsController < Devise::RegistrationsController
       build_resource(sign_up_params)
       resource.organization = @organization
       resource.user_role = @user_role
+      resource.user_role.permission_ids = Permission.pluck(:id)
       resource.save!
 
       if resource.persisted?

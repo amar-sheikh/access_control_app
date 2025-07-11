@@ -1,4 +1,6 @@
 class Organization::UserRolesController < Organization::BaseController
+  load_and_authorize_resource class: 'UserRole'
+
   before_action :set_user_role, only: %i[ show edit update destroy ]
 
   def index
@@ -46,6 +48,6 @@ class Organization::UserRolesController < Organization::BaseController
   end
 
   def user_role_params
-    params.require(:user_role).permit(:name, :org_user_id, :organization_id)
+    params.require(:user_role).permit(:name, permission_ids: [])
   end
 end

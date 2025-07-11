@@ -31,8 +31,10 @@
 </div>
 
 <div class="d-flex gap-2">
-  <%= link_to "Edit", edit_organization_user_path(@user), class: "btn btn-outline-primary" %>
-  <%= button_to "Delete", organization_user_path(@user), method: :delete,
-              data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+  <% if can? :manage, OrgUser %>
+    <%= link_to "Edit", edit_organization_user_path(@user), class: "btn btn-outline-primary" %>
+    <%= button_to "Delete", organization_user_path(@user), method: :delete,
+                data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+  <% end %>
   <%= link_to "Back", organization_users_path, class: "btn btn-secondary ms-auto" %>
 </div>

@@ -18,5 +18,17 @@
     <%= form.text_field :name, class: "form-control", placeholder: "Role name (e.g., Admin)" %>
   </div>
 
+  <div class="mb-3">
+    <h4>Permissions</h4>
+    <div class="mt-2 row">
+      <% Permission.all.each do |permission| %>
+      <div class="col-4">
+        <%= check_box_tag "user_role[permission_ids][]", permission.id, @user_role.permission_ids.include?(permission.id), id: "permission_#{permission.id}", class: "form-check-input permission-checkbox" %>
+        <%= label_tag "permission_#{permission.id}", permission.label, class: "form-check-label" %>
+      </div>
+      <% end %>
+    </div>
+  </div>
+
   <%= form.submit "Save Changes", class: "btn btn-primary" %>
 <% end %>

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   end
 
   root to: "organization/dashboard#index"
+  resources :un_authorized, only: [:index]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

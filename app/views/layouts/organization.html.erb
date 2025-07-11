@@ -20,8 +20,10 @@
         <div class="d-flex justify-content-between">
           <h1>Dashboard</h1>
           <div>
-            <%= link_to "Edit Org", organization_edit_path, class: "btn btn-outline-light mx-2" %>
-            <%= button_to "Sign out", destroy_org_user_session_path, method: :delete, class: "btn btn-outline-light mx-2" %>
+            <% if can? :manage, Organization %>
+              <%= link_to "Edit Org", organization_edit_path, class: "btn btn-outline-light m-1" %>
+            <% end %>
+            <%= button_to "Sign out", destroy_org_user_session_path, method: :delete, class: "btn btn-outline-light m-1" %>
           </div>
         </div>
       </div>
@@ -30,15 +32,23 @@
       <nav class="bg-dark text-white p-3" style="min-width: 250px; min-height: 100vh;">
         <h4 class="text-white mb-4">Org Menu</h4>
         <ul class="nav flex-column">
-          <li class="nav-item mb-2">
-            <%= link_to "Dashboard", organization_root_path, class: "nav-link text-white" %>
-          </li>
-          <li class="nav-item mb-2">
-            <%= link_to "User Roles", organization_user_roles_path, class: "nav-link text-white" %>
-          </li>
-          <li class="nav-item mb-2">
-            <%= link_to "Users", organization_users_path, class: "nav-link text-white" %>
-          </li>
+          <% if can? :read, Organization %>
+            <li class="nav-item mb-2">
+              <%= link_to "Dashboard", organization_root_path, class: "nav-link text-white" %>
+            </li>
+          <% end %>
+
+          <% if can? :read, UserRole %>
+            <li class="nav-item mb-2">
+              <%= link_to "User Roles", organization_user_roles_path, class: "nav-link text-white" %>
+            </li>
+          <% end %>
+
+          <% if can? :read, OrgUser %>
+            <li class="nav-item mb-2">
+              <%= link_to "Users", organization_users_path, class: "nav-link text-white" %>
+            </li>
+          <% end %>
         </ul>
       </nav>
       <main class="container mt-4">

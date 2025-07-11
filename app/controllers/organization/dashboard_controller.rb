@@ -1,4 +1,6 @@
 class Organization::DashboardController < Organization::BaseController
+  load_and_authorize_resource class: 'Organization'
+
   def index
   end
 
